@@ -1,0 +1,20 @@
+This playbook download the git files and build tomcat server 
+tomcat build automatically take tomcat-user.xml and war code and run as container
+
+---
+ - hosts: all
+   tasks:
+   - name: checkout git
+     git:
+      repo: 'https://github.com/thesave9/southwest_code.git'
+      dest: /tmp/git
+   - name: Deploying the war file
+     get_url:
+       url: http://ec2-13-58-133-90.us-east-2.compute.amazonaws.com:8081/nexus/content/repositories/war/Dev/southwest/14/southwest-14.war
+       dest: /tmp/git/southwest.war
+   - name: Docker build
+     docker_image:
+       name: thesave9/files
+       tag: Tomcat.v.7.0.93
+       path: /tmp/git/
+       state: build
