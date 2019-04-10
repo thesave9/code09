@@ -1,0 +1,21 @@
+###########################################################################################################################
+$ mkdir git
+$cd git/
+$ git init
+Initialized empty Git repository in /root/git/.git/
+git remote add origin https://github.com/thesave9/Git_code.git
+
+
+############################################################################################################################
+maven war file
+############################################################################################################################
+apt-get update
+apt-get install openjdk-8-jdk -y 
+apt-get install maven -y
+mvn archetype:generate -DgroupId=southwest -DartifactId=southwest -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+############################################################################################################################
+
+git add .
+git commit -m "Comminting the trucks in git repo"
+git push -u origin master
+############################################################################################################################
