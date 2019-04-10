@@ -18,3 +18,7 @@ tomcat build automatically take tomcat-user.xml and war code and run as containe
        tag: Tomcat.v.7.0.93
        path: /tmp/git/
        state: build
+
+
+Note: If git directoy exists on the target host, git task will fail
+Can avoid it by using option " force: yes "
