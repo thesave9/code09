@@ -60,3 +60,27 @@ sudo sed -i 's/##PubkeyAuthentication yes/PubkeyAuthentication yes/g' /etc/ssh/s
 sudo sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 sudo systemctl restart sshd
 ############################################################################################################################
+
+
+Configuring master and slave:
+-----------------------------
+Manage jenkins --> manage nodes --> New node 
+
+1. Node name
+2. Permanent agent 
+3. Save
+4. Name: << Name >>
+5. Description : << >>
+6. # of executors : << value >>
+7.  remote root directory:  << /Path >>
+8. Labels: << Label_name >>
+9. Host : << Hostname_of_slave>>
+10. Credentials: << target_user_pass>>
+
+
+
+
+
+
+
+
