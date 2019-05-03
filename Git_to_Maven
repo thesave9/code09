@@ -4,7 +4,7 @@ $cd git/
 $ git init
 Initialized empty Git repository in /root/git/.git/
 git remote add origin https://github.com/thesave9/Git_code.git
-
+$ git checkout -b shiva
 
 ############################################################################################################################
 maven war file
@@ -17,5 +17,46 @@ mvn archetype:generate -DgroupId=southwest -DartifactId=southwest -DarchetypeArt
 
 git add .
 git commit -m "Comminting the trucks in git repo"
-git push -u origin master
+git push -u origin shiva
+############################################################################################################################
+
+Install JAVA
+---------------------------
+apt-get install openjdk-8-jdk -y
+############################################################################################################################
+Install maven
+---------------------------
+
+apt-get install maven -y
+
+############################################################################################################################
+Install Jenkins 
+
+Master server configuration
+---------------------------
+apt install openjdk-8-jdk -y
+wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+apt-get update 
+apt-get install jenkins -y
+systemctl start jenkins
+echo jenkins:roo123 | /usr/sbin/chpasswd
+echo -e "\n jenkins ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
+systemctl restart sshd
+
+su - jenkins 
+ssh-keygen
+ssh-copy-id jenkins@<<master_hostname>>
+
+Slave  
+---------------------------
+sudo mkdir /home/jenkins
+sudo useradd  -d /home/jenkins -s /bin/bash -c "jenkins user" jenkins
+echo jenkins:root123 | /usr/sbin/chpasswd
+sudo chown -R jenkins:jenkins /home/jenkins
+sudo echo -e "\n jenkins ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
+sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+sudo sed -i 's/##PubkeyAuthentication yes/PubkeyAuthentication yes/g' /etc/ssh/sshd_config
+sudo sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+sudo systemctl restart sshd
 ############################################################################################################################
