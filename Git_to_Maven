@@ -184,6 +184,32 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
+##################################################################################################
+
+docker swarm master configuration 
+
+$ docker  swarm init --advertise-addr 18.221.94.115
+
+
+Docker worker nodes configuration 
+
+$ docker swarm join --token SWMTKN-1-2xt56jz3gpkjoxg7h20ilcnyilui0xh5x6fo8vbyh50lbwavqp-8kxolbjzcghx4ssh8ky87uubl 18.221.94.115:2377
+
+
+Verification
+
+$ docker node ls 
+
+Running a service :
+
+docker service create --name madhu tomcat:7
+
+scaling up service 
+
+$ docker service scale madhu=10
+
+
+
 
 
 
