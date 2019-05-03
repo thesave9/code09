@@ -78,7 +78,39 @@ Manage jenkins --> manage nodes --> New node
 
 ############################################################################################################################
 
+Configuring Jenkins job:
+-----------------------------
+New item --> << Job_Name>> --> Free style project --> 
 
+1. Description
+
+For slave configuration, select the below option in the job
+2. Restrict where this project can be run
+  a. Provide the slave node name and drop down will be automatically popped 
+
+3. Source code management tab 
+  a. GIT 
+  b. Repositories
+  c. Repository URL = https://github.com/thesave9/test.git
+  d. 	Branches to build = */shiva
+
+4. Build Triggers
+ a. Poll SCM
+ b. 	Schedule =  * * * * * 
+
+5. Build
+ a. 	Goals = clean package
+
+6. Post-build Actions = Deploy war/ ear to a container 
+
+ a. WAR/EAR files = **/*war
+ b. Context path = was
+ c. containers 
+     1. Tomcat 7.x 
+     2. Credentials = 
+     3. Tomcat URL 
+     
+ 7. save and apply
 
 
 
