@@ -34,7 +34,7 @@ Install Jenkins
 
 Master server configuration
 ---------------------------
-apt install openjdk-8-jdk -y
+apt install openjdk-8-jdk maven -y
 wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
 sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 apt-get update 
@@ -50,6 +50,8 @@ ssh-copy-id jenkins@<<master_hostname>>
 
 Slave  
 ---------------------------
+apt-get update
+apt-get install openjdk-8-jdk  maven -y
 sudo mkdir /home/jenkins
 sudo useradd  -d /home/jenkins -s /bin/bash -c "jenkins user" jenkins
 echo jenkins:root123 | /usr/sbin/chpasswd
